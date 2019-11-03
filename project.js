@@ -17,11 +17,13 @@ function addFilm(e) {
   const url = urlElement.value;
 
   if (title === '' || director === '' || url === '') {
-    // Error
+    ui.displayMessages('Please fill in all fields...', 'danger');
   }  else {
     const newFilm = new Film(title, director, url);
 
     ui.addFilmToUI(newFilm);
+    ui.displayMessages('Movie successfully added', 'success');
+
     ui.clearInputs(titleElement, directorElement, urlElement);
   }
 
