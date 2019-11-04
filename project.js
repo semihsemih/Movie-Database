@@ -3,6 +3,7 @@ const titleElement = document.getElementById('title');
 const directorElement = document.getElementById('director');
 const urlElement = document.getElementById('url');
 const secondCardBody = document.querySelectorAll('.card-body')[1];
+const clear = document.getElementById('clear-films');
 
 const ui = new UI();
 const storage = new Storage();
@@ -14,8 +15,9 @@ function eventListeners() {
   document.addEventListener('DOMContentLoaded', function () {
     let films = storage.getFilmsFromStorage();
     ui.loadAllFilms(films);
-  })
+  });
   secondCardBody.addEventListener('click', deleteFilm);
+  clear.addEventListener('click', clearAllFilms);
 }
 
 function addFilm(e) {
@@ -44,5 +46,12 @@ function deleteFilm(e) {
     storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
 
     ui.displayMessages('Movie successfully added', 'success');
+  }
+}
+
+function clearAllFilms() {
+  if (confirm('This operation cannot be reversed. Are you sure?')) {
+    ui.clearAllFilmsFromUI();
+    storage.clearAllFilmsFromStorage();
   }
 }
