@@ -2,6 +2,7 @@ const form = document.getElementById('film-form');
 const titleElement = document.getElementById('title');
 const directorElement = document.getElementById('director');
 const urlElement = document.getElementById('url');
+const secondCardBody = document.querySelectorAll('.card-body')[1];
 
 const ui = new UI();
 const storage = new Storage();
@@ -14,6 +15,7 @@ function eventListeners() {
     let films = storage.getFilmsFromStorage();
     ui.loadAllFilms(films);
   })
+  secondCardBody.addEventListener('click', deleteFilm);
 }
 
 function addFilm(e) {
@@ -23,7 +25,7 @@ function addFilm(e) {
 
   if (title === '' || director === '' || url === '') {
     ui.displayMessages('Please fill in all fields...', 'danger');
-  }  else {
+  } else {
     const newFilm = new Film(title, director, url);
 
     ui.addFilmToUI(newFilm);
@@ -34,4 +36,13 @@ function addFilm(e) {
   }
 
   e.preventDefault();
+}
+
+function deleteFilm(e) {
+  if (e.target.id === 'delete-film') {
+    ui.deleteFilmFromUI(e.target);
+    storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+
+    ui.displayMessages('Movie successfully added', 'success');
+  }
 }
