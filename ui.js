@@ -4,7 +4,7 @@ class UI {
 
     filmList.innerHTML += `
     <tr>
-      <td><img src="${newFilm.url}" class="img-fluid img-thumbnail"></td>
+      <td><img src="${newFilm.url}" class="img-fluid img-thumbnail" style="width: 200px"></td>
       <td>${newFilm.title}</td>
       <td>${newFilm.director}</td>
       <td><a href="#" id = "delete-film" class = "btn btn-danger">Remove Film</a></td>
@@ -38,7 +38,7 @@ class UI {
     films.forEach(film => {
       filmList.innerHTML += `
     <tr>
-      <td><img src="${film.url}" class="img-fluid img-thumbnail"></td>
+      <td><img src="${film.url}" class="img-fluid img-thumbnail" style="width: 200px"></td>
       <td>${film.title}</td>
       <td>${film.director}</td>
       <td><a href="#" id = "delete-film" class = "btn btn-danger">Remove Film</a></td>
