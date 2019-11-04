@@ -4,6 +4,7 @@ const directorElement = document.getElementById('director');
 const urlElement = document.getElementById('url');
 
 const ui = new UI();
+const storage = new Storage();
 
 eventListeners();
 
@@ -22,6 +23,7 @@ function addFilm(e) {
     const newFilm = new Film(title, director, url);
 
     ui.addFilmToUI(newFilm);
+    storage.addFilmToStorage(newFilm);
     ui.displayMessages('Movie successfully added', 'success');
 
     ui.clearInputs(titleElement, directorElement, urlElement);
