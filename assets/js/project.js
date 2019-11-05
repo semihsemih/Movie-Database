@@ -4,6 +4,8 @@ const directorElement = document.getElementById('director');
 const urlElement = document.getElementById('url');
 const secondCardBody = document.querySelectorAll('.card-body')[1];
 const clear = document.getElementById('clear-films');
+const sortTitleButton = document.getElementById('sort-title');
+const sortDirectorButton = document.getElementById('sort-director');
 
 eventListeners();
 
@@ -15,6 +17,8 @@ function eventListeners() {
   });
   secondCardBody.addEventListener('click', deleteFilm);
   clear.addEventListener('click', clearAllFilms);
+  sortTitleButton.addEventListener('click', sortTitles);
+  sortDirectorButton.addEventListener('click', sortDirectors);
 }
 
 function addFilm(e) {
@@ -51,4 +55,28 @@ function clearAllFilms() {
     UI.clearAllFilmsFromUI();
     Storage.clearAllFilmsFromStorage();
   }
+}
+
+let titleCount = 0;
+
+function sortTitles() {
+
+  if (titleCount % 2 === 0) {
+    Sort.sortTitlesAtoZ();
+  } else if (titleCount % 2 === 1) {
+    Sort.sortTitlesZtoA();
+  }
+  titleCount += 1;
+}
+
+let directorCount = 0;
+
+function sortDirectors() {
+
+  if (directorCount % 2 === 0) {
+    Sort.sortDirectorsAtoZ();
+  } else if (directorCount % 2 === 1) {
+    Sort.sortDirectorsZtoA();
+  }
+  directorCount += 1;
 }

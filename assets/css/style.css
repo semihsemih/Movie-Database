@@ -1,0 +1,10 @@
+.sort-button {
+    cursor: pointer;
+    color: white;
+    margin-left: 2px;
+}
+
+.sort-button:hover {
+    color: #dc3545;
+    transition: color ease 500ms;
+}
