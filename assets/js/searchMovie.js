@@ -5,7 +5,7 @@ class SearchMovie {
 
     const xhr = new XMLHttpRequest();
 
-    xhr.open('GET',`http://www.omdbapi.com/?s=${titleUri}&apikey=9da6724f`);
+    xhr.open('GET',`https://www.omdbapi.com/?s=${titleUri}&apikey=9da6724f`);
 
     xhr.onload = function() {
       if (xhr.status === 200) {
@@ -29,7 +29,7 @@ class SearchMovie {
     const xhr = new XMLHttpRequest();
     const titleUri = encodeURI(title.trim());
 
-    xhr.open('GET',`http://www.omdbapi.com/?t=${titleUri}&apikey=9da6724f`);
+    xhr.open('GET',`https://www.omdbapi.com/?t=${titleUri}&apikey=9da6724f`);
 
     xhr.onload = function() {
       if (xhr.status === 200) {
