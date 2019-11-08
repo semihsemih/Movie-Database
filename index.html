@@ -19,14 +19,18 @@
         <div class="card-body">
             <form id="film-form" name="form">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div id="searchTitle" class="form-group col-md-6">
                         <input class="form-control" type="text" name="title" id="title" placeholder="Movie Name">
+                        <!--<div class="autocomplete-items form-control">
+                            <div class="movie-title">Movie Title</div>
+                        </div>-->
+
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" type="text" name="director" id="director" placeholder="Directored By">
+                        <input class="form-control" type="text" name="director" id="director" placeholder="Directored By" readonly>
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" type="text" name="url" id="url" placeholder="Movie Poster Link">
+                        <input class="form-control" type="text" name="url" id="url" placeholder="Movie Poster Link" readonly>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-danger">Add Movie</button>
@@ -85,6 +89,8 @@
 <script src="assets/js/storage.js"></script>
 <script src="assets/js/film.js"></script>
 <script src="assets/js/sort.js"></script>
+<script src="assets/js/searchMovie.js"></script>
+<script src="assets/js/autoComplete.js"></script>
 
 <script src="assets/js/project.js"></script>
 
