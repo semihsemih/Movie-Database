@@ -20,11 +20,6 @@ function eventListeners() {
   sortTitleButton.addEventListener('click', sortTitles);
   sortDirectorButton.addEventListener('click', sortDirectors);
   titleElement.addEventListener('keyup', searchMovies);
-  /*titleElement.addEventListener('blur', function () {
-    if (titleElement.value !== '') {
-      AutoComplete.removeList();
-    }
-  });*/
 }
 
 function addFilm(e) {
@@ -87,12 +82,17 @@ function sortDirectors() {
   directorCount += 1;
 }
 
+let timeout;
+
 function searchMovies(e) {
-  SearchMovie.getMovies(e.target.value, function (err, response) {
-    if (AutoComplete.checkExistList()) {
-      AutoComplete.removeList();
-    }
-    const movies = JSON.parse(response).Search;
-    AutoComplete.createAutoCompleteList(movies);
-  });
+  clearTimeout(timeout);
+  timeout = setTimeout(function() {
+    SearchMovie.getMovies(e.target.value, function (err, response) {
+      if (AutoComplete.checkExistList()) {
+        AutoComplete.removeList();
+      }
+      const movies = JSON.parse(response).Search;
+      AutoComplete.createAutoCompleteList(movies);
+    });
+  }, 500);
 }
