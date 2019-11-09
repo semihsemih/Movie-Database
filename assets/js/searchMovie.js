@@ -1,21 +1,15 @@
 class SearchMovie {
 
-  static getMovies(title, callback) {
+  static getMovies(title) {
     const titleUri = encodeURI(title.trim());
+    const apiKey = '9da6724f';
 
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('GET',`https://www.omdbapi.com/?s=${titleUri}&apikey=9da6724f`);
-
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        callback(null, xhr.responseText);
-      } else {
-        callback('error', null)
-      }
-    };
-
-    xhr.send();
+    return new Promise((resolve, reject) => {
+      fetch(`https://www.omdbapi.com/?s=${titleUri}&apikey=${apiKey}`)
+        .then(response => response.json())
+        .then(data => resolve(data))
+        .catch(err => console.error(err))
+    })
   }
 
   static selectMovies(title) {
@@ -26,27 +20,21 @@ class SearchMovie {
   }
 
   static getDirectorAndPoster(title) {
-    const xhr = new XMLHttpRequest();
     const titleUri = encodeURI(title.trim());
+    const apiKey = '9da6724f';
 
-    xhr.open('GET',`https://www.omdbapi.com/?t=${titleUri}&apikey=9da6724f`);
-
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        const movie = JSON.parse(xhr.responseText);
+    fetch(`https://www.omdbapi.com/?t=${titleUri}&apikey=${apiKey}`)
+      .then(response => response.json())
+      .then(data => {
         const directorElement = document.getElementById('director');
         const urlElement = document.getElementById('url');
-        directorElement.value = movie.Director;
-        if (movie.Poster !== 'N/A') {
-          urlElement.value = movie.Poster;
+        directorElement.value = data.Director;
+        if (data.Poster !== 'N/A') {
+          urlElement.value = data.Poster;
         } else {
           urlElement.value = 'https://pixel.nymag.com/imgs/fashion/daily/2018/11/02/2-empty-movie-theatre.w700.h700.jpg';
         }
-      } else {
-        console.log('error')
-      }
-    };
-
-    xhr.send();
+      })
+      .catch(err => console.error(err));
   }
 }

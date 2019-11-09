@@ -86,13 +86,15 @@ let timeout;
 
 function searchMovies(e) {
   clearTimeout(timeout);
-  timeout = setTimeout(function() {
-    SearchMovie.getMovies(e.target.value, function (err, response) {
-      if (AutoComplete.checkExistList()) {
-        AutoComplete.removeList();
-      }
-      const movies = JSON.parse(response).Search;
-      AutoComplete.createAutoCompleteList(movies);
-    });
-  }, 500);
+  timeout = setTimeout(function () {
+    SearchMovie.getMovies(e.target.value)
+      .then(list => {
+        if (AutoComplete.checkExistList()) {
+          AutoComplete.removeList();
+        }
+        const movies = list.Search;
+        AutoComplete.createAutoCompleteList(movies);
+      })
+      .catch(err => console.log(err));
+  }, 500)
 }
