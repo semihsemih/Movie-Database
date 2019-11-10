@@ -1,25 +1,25 @@
-const form = document.getElementById('film-form');
-const titleElement = document.getElementById('title');
-const directorElement = document.getElementById('director');
-const urlElement = document.getElementById('url');
-const secondCardBody = document.querySelectorAll('.card-body')[1];
-const clear = document.getElementById('clear-films');
-const sortTitleButton = document.getElementById('sort-title');
-const sortDirectorButton = document.getElementById('sort-director');
+const form = document.getElementById("film-form");
+const titleElement = document.getElementById("title");
+const directorElement = document.getElementById("director");
+const urlElement = document.getElementById("url");
+const secondCardBody = document.querySelectorAll(".card-body")[1];
+const clear = document.getElementById("clear-films");
+const sortTitleButton = document.getElementById("sort-title");
+const sortDirectorButton = document.getElementById("sort-director");
 
 eventListeners();
 
 function eventListeners() {
-  form.addEventListener('submit', addFilm);
-  document.addEventListener('DOMContentLoaded', function () {
+  form.addEventListener("submit", addFilm);
+  document.addEventListener("DOMContentLoaded", function() {
     let films = Storage.getFilmsFromStorage();
     UI.loadAllFilms(films);
   });
-  secondCardBody.addEventListener('click', deleteFilm);
-  clear.addEventListener('click', clearAllFilms);
-  sortTitleButton.addEventListener('click', sortTitles);
-  sortDirectorButton.addEventListener('click', sortDirectors);
-  titleElement.addEventListener('keyup', searchMovies);
+  secondCardBody.addEventListener("click", deleteFilm);
+  clear.addEventListener("click", clearAllFilms);
+  sortTitleButton.addEventListener("click", sortTitles);
+  sortDirectorButton.addEventListener("click", sortDirectors);
+  titleElement.addEventListener("keyup", searchMovies);
 }
 
 function addFilm(e) {
@@ -27,14 +27,14 @@ function addFilm(e) {
   const director = directorElement.value;
   const url = urlElement.value;
 
-  if (title === '' || director === '' || url === '') {
-    UI.displayMessages('Please fill in all fields...', 'danger');
+  if (title === "" || director === "" || url === "") {
+    UI.displayMessages("Please fill in all fields...", "danger");
   } else {
     const newFilm = new Film(title, director, url);
 
     UI.addFilmToUI(newFilm);
     Storage.addFilmToStorage(newFilm);
-    UI.displayMessages('Movie successfully added', 'success');
+    UI.displayMessages("Movie successfully added", "success");
 
     UI.clearInputs(titleElement, directorElement, urlElement);
   }
@@ -43,16 +43,19 @@ function addFilm(e) {
 }
 
 function deleteFilm(e) {
-  if (e.target.id === 'delete-film') {
+  if (e.target.id === "delete-film") {
     UI.deleteFilmFromUI(e.target);
-    Storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+    Storage.deleteFilmFromStorage(
+      e.target.parentElement.previousElementSibling.previousElementSibling
+        .textContent
+    );
 
-    UI.displayMessages('Movie successfully added', 'success');
+    UI.displayMessages("Movie successfully added", "success");
   }
 }
 
 function clearAllFilms() {
-  if (confirm('This operation cannot be reversed. Are you sure?')) {
+  if (confirm("This operation cannot be reversed. Are you sure?")) {
     UI.clearAllFilmsFromUI();
     Storage.clearAllFilmsFromStorage();
   }
@@ -61,7 +64,6 @@ function clearAllFilms() {
 let titleCount = 0;
 
 function sortTitles() {
-
   if (titleCount % 2 === 0) {
     Sort.sortTitlesAtoZ();
   } else if (titleCount % 2 === 1) {
@@ -73,7 +75,6 @@ function sortTitles() {
 let directorCount = 0;
 
 function sortDirectors() {
-
   if (directorCount % 2 === 0) {
     Sort.sortDirectorsAtoZ();
   } else if (directorCount % 2 === 1) {
@@ -86,7 +87,7 @@ let timeout;
 
 function searchMovies(e) {
   clearTimeout(timeout);
-  timeout = setTimeout(function () {
+  timeout = setTimeout(function() {
     SearchMovie.getMovies(e.target.value)
       .then(list => {
         if (AutoComplete.checkExistList()) {
@@ -96,5 +97,5 @@ function searchMovies(e) {
         AutoComplete.createAutoCompleteList(movies);
       })
       .catch(err => console.log(err));
-  }, 500)
+  }, 500);
 }

@@ -3,22 +3,22 @@ class Storage {
     let films = this.getFilmsFromStorage();
 
     films.push(newFilm);
-    localStorage.setItem('films', JSON.stringify(films));
+    localStorage.setItem("films", JSON.stringify(films));
   };
 
   static getFilmsFromStorage() {
     let films;
 
-    if (localStorage.getItem('films') === null) {
+    if (localStorage.getItem("films") === null) {
       films = [];
     } else {
-      films = JSON.parse(localStorage.getItem('films'));
+      films = JSON.parse(localStorage.getItem("films"));
     }
 
     return films;
-  };
+  }
 
-  static deleteFilmFromStorage =filmTitle => {
+  static deleteFilmFromStorage = filmTitle => {
     let films = this.getFilmsFromStorage();
     films.forEach((film, index) => {
       if (film.title === filmTitle) {
@@ -26,10 +26,10 @@ class Storage {
       }
     });
 
-    localStorage.setItem('films', JSON.stringify(films));
+    localStorage.setItem("films", JSON.stringify(films));
   };
 
   static clearAllFilmsFromStorage() {
-    localStorage.removeItem('films');
-  };
+    localStorage.removeItem("films");
+  }
 }

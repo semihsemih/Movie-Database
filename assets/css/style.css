@@ -1,26 +1,26 @@
 .sort-button {
-    cursor: pointer;
-    color: white;
-    margin-left: 2px;
+  cursor: pointer;
+  color: white;
+  margin-left: 2px;
 }
 
 .sort-button:hover {
-    color: #dc3545;
-    transition: color ease 500ms;
+  color: #dc3545;
+  transition: color ease 500ms;
 }
 
 .autocomplete-items {
-    position: absolute;
-    z-index: 99;
+  position: absolute;
+  z-index: 99;
 
-    top: 100%;
-    left: 0;
-    right: 0;
+  top: 100%;
+  left: 0;
+  right: 0;
 }
 
 .autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
 }

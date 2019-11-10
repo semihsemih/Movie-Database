@@ -1,9 +1,9 @@
 class Sort {
   static sortTitlesAtoZ() {
     let films = Storage.getFilmsFromStorage();
-    films.sort(((a, b) => {
-      return (a.title > b.title) ? 1 : -1
-    }));
+    films.sort((a, b) => {
+      return a.title > b.title ? 1 : -1;
+    });
 
     UI.clearAllFilmsFromUI();
     UI.loadAllFilms(films);
@@ -11,9 +11,9 @@ class Sort {
 
   static sortTitlesZtoA() {
     let films = Storage.getFilmsFromStorage();
-    films.sort(((a, b) => {
-      return (a.title < b.title) ? 1 : -1
-    }));
+    films.sort((a, b) => {
+      return a.title < b.title ? 1 : -1;
+    });
 
     UI.clearAllFilmsFromUI();
     UI.loadAllFilms(films);
@@ -21,9 +21,9 @@ class Sort {
 
   static sortDirectorsAtoZ() {
     let films = Storage.getFilmsFromStorage();
-    films.sort(((a, b) => {
-      return (a.director > b.director) ? 1 : -1
-    }));
+    films.sort((a, b) => {
+      return a.director > b.director ? 1 : -1;
+    });
 
     UI.clearAllFilmsFromUI();
     UI.loadAllFilms(films);
@@ -31,9 +31,9 @@ class Sort {
 
   static sortDirectorsZtoA() {
     let films = Storage.getFilmsFromStorage();
-    films.sort(((a, b) => {
-      return (a.director < b.director) ? 1 : -1
-    }));
+    films.sort((a, b) => {
+      return a.director < b.director ? 1 : -1;
+    });
 
     UI.clearAllFilmsFromUI();
     UI.loadAllFilms(films);
